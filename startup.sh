@@ -4,9 +4,11 @@
 service nginx stop
 
 # Check if school.sqlite exists, and create it if it doesn't
-if [ ! -f /home/site/wwwroot/database/school.sqlite ]; then
-touch /home/site/wwwroot/database/school.sqlite
-chmod 666 /home/site/wwwroot/database/school.sqlite
+DB_PATH="/home/site/wwwroot/database/school.sqlite"
+if [ ! -f "$DB_PATH" ]; then
+  touch "$DB_PATH"
+  chmod 666 "$DB_PATH"
+  echo "Created SQLite database: $DB_PATH"
 fi
 
 # Set correct permissions
